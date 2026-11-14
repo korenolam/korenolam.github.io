@@ -8,28 +8,26 @@
 <meta property="og:title" content="Koren Olam | קורן עולם">
 <meta property="og:description" content="טיולים, תרבויות ואתגרים מסביב לעולם.">
 <meta property="og:image" content="https://i.ytimg.com/vi/qRZyBhQXTDk/hqdefault.jpg">
-<meta name="theme-color" content="#140F1C">
+<meta name="theme-color" content="#0C1618">
 <meta name="color-scheme" content="dark">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600&family=Heebo:wght@700;800&family=Rubik:wght@900&display=swap" rel="stylesheet">
 <style>
-  /* ===== Korenolam Brand Kit (approved 2026-11-09) – change colors/fonts only here ===== */
+  /* ===== Korenolam Brand Kit (primary teal per Koren 2026-11-14) – change colors/fonts only here ===== */
   :root {
-    --lilac: #A06CD5;        /* primary */
+    --primary: #1FA8B8;      /* teal (Koren 14.11) */
     --gold: #F2B33D;         /* secondary */
     --accent: #FF5A36;       /* one word only */
     --white: #FFFFFF;
     --ink: #111111;          /* outline / shadow */
-    /* Dark theme (always on – Koren's choice) */
-    --bg: #140F1C;
-    --bg-glow: rgba(160,108,213,.22);
-    --surface: #211A2B;
-    --fg: #F3EEF8;
-    --muted: #B3A7C2;
-    --line: rgba(160,108,213,.28);
-    --glass: rgba(255,255,255,.10);
-    --glass-line: rgba(255,255,255,.22);
+    /* Dark theme: teal-black background (review 14.11) */
+    --bg: #0C1618;
+    --bg-glow: rgba(31,168,184,.22);
+    --surface: #14242A;
+    --fg: #EEF6F7;
+    --muted: #A3B9BD;
+    --line: rgba(31,168,184,.28);
     --display: "Rubik", "Heebo", "Arial Hebrew", Arial, sans-serif;  /* Rubik Black */
     --head: "Heebo", "Arial Hebrew", Arial, sans-serif;              /* Heebo Bold */
     --body: "Assistant", "Arial Hebrew", Arial, sans-serif;          /* Assistant */
@@ -51,55 +49,33 @@
   /* ===== Banner (wide channel banner) ===== */
   .hero {
     position: relative; aspect-ratio: 16 / 9; overflow: hidden;
-    border-radius: 0 0 24px 24px; background: #2A2135;
+    border-radius: 0 0 24px 24px; background: #14242A;
     box-shadow: 0 14px 40px rgba(0,0,0,.45);
   }
   .hero img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; display: block; }
   .hero::after {
     content: ""; position: absolute; inset: auto 0 0 0; height: 35%;
-    background: linear-gradient(to top, rgba(20,15,28,.75), transparent);
+    background: linear-gradient(to top, rgba(12,22,24,.55), transparent);
   }
   @media (min-width: 481px) { main { padding-top: 20px; } .hero { border-radius: 24px; } }
 
-  .wrap { padding: 0 16px; }
+  .wrap { padding: 20px 16px 0; }
 
-  /* ===== Floating glass bubbles ===== */
-  .glass {
-    background: var(--glass);
-    border: 1px solid var(--glass-line);
-    -webkit-backdrop-filter: blur(14px) saturate(140%);
-    backdrop-filter: blur(14px) saturate(140%);
-    box-shadow: 0 10px 30px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.18);
-  }
-  .tagline {
-    position: relative; z-index: 2;
-    width: fit-content; max-width: calc(100% - 32px);
-    margin: -19px auto 0;
-    padding: 8px 18px; border-radius: 999px;
-    font-family: var(--head); font-weight: 700; font-size: clamp(13px, 3.9vw, 16px); text-align: center;
-    white-space: nowrap;
-    color: var(--white);
-    animation: float 6s ease-in-out infinite;
-  }
+  /* ===== Schedule strip on top of the latest video (static – Koren 14.11) ===== */
   .schedule {
-    display: flex; align-items: center; justify-content: center; gap: 10px;
-    width: fit-content; max-width: 100%;
-    margin: 22px auto 14px;
-    padding: 9px 18px; border-radius: 999px;
-    font-family: var(--head); font-weight: 700; font-size: 15px;
-    color: var(--fg);
-    border-color: rgba(160,108,213,.55);
-    box-shadow: 0 0 0 1px rgba(160,108,213,.15), 0 8px 26px rgba(160,108,213,.30), inset 0 1px 0 rgba(255,255,255,.18);
-    animation: float 6s ease-in-out infinite; animation-delay: -3s;
+    display: flex; align-items: center; gap: 14px;
+    background: var(--primary); color: var(--white);
+    padding: 12px 14px;
   }
-  .schedule .dot {
-    width: 9px; height: 9px; border-radius: 50%; background: var(--accent); flex: 0 0 9px;
-    box-shadow: 0 0 0 0 rgba(255,90,54,.6); animation: pulse 2s infinite;
+  .cal {
+    flex: 0 0 auto; width: 74px; border-radius: 12px; overflow: hidden;
+    background: var(--white); color: var(--ink); text-align: center;
+    box-shadow: 0 4px 12px rgba(17,17,17,.18);
   }
-  .schedule b { color: var(--gold); font-weight: 800; }
-  @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
-  @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(255,90,54,.55); } 70% { box-shadow: 0 0 0 9px rgba(255,90,54,0); } 100% { box-shadow: 0 0 0 0 rgba(255,90,54,0); } }
-  @media (prefers-reduced-motion: reduce) { .tagline, .schedule, .schedule .dot { animation: none; } }
+  .cal .day { display: block; background: var(--gold); font-family: var(--head); font-weight: 800; font-size: 13px; padding: 3px 0; }
+  .cal .time { display: block; font-family: var(--display); font-weight: 900; font-size: 22px; line-height: 1.25; padding: 3px 0 4px; }
+  .schedule .txt { font-family: var(--head); font-weight: 800; font-size: 18px; line-height: 1.25; }
+  .schedule .next { display: block; font-family: var(--body); font-weight: 600; font-size: 14px; opacity: .92; margin-top: 2px; }
 
   /* ===== Latest video ===== */
   .featured {
@@ -109,7 +85,7 @@
     box-shadow: 0 12px 32px rgba(0,0,0,.40);
     transition: transform .15s ease, border-color .15s ease;
   }
-  .featured:hover, .featured:active { transform: translateY(-2px); border-color: var(--lilac); }
+  .featured:hover, .featured:active { transform: translateY(-2px); border-color: var(--primary); }
   .featured .thumb { position: relative; aspect-ratio: 16 / 9; background: #222; }
   .featured img { width: 100%; height: 100%; object-fit: cover; display: block; }
   .badge {
@@ -124,7 +100,7 @@
   }
   .play::after { content: ""; border-style: solid; border-width: 12px 0 12px 20px; border-color: transparent transparent transparent var(--white); margin-left: 5px; }
   .featured .meta { padding: 12px 14px 14px; }
-  .featured .label { font-family: var(--head); font-weight: 700; font-size: 13px; color: var(--lilac); }
+  .featured .label { font-family: var(--head); font-weight: 700; font-size: 13px; color: var(--primary); }
   .featured .title { font-family: var(--head); font-weight: 700; font-size: 17px; line-height: 1.35; margin-top: 2px; }
 
   /* ===== Links ===== */
@@ -133,11 +109,12 @@
     display: flex; align-items: center; gap: 12px;
     text-decoration: none; color: var(--fg);
     background: var(--surface); border: 1px solid var(--line); border-radius: 14px;
+    box-shadow: none;
     padding: 14px 16px; font-family: var(--head); font-weight: 700; font-size: 16px;
     transition: transform .15s ease, border-color .15s ease;
   }
-  .link:hover, .link:active { transform: translateY(-2px); border-color: var(--lilac); }
-  .link.primary { background: var(--lilac); color: var(--white); border-color: var(--lilac); box-shadow: 0 8px 24px rgba(160,108,213,.40); }
+  .link:hover, .link:active { transform: translateY(-2px); border-color: var(--primary); }
+  .link.primary { background: var(--primary); color: var(--white); border-color: var(--primary); box-shadow: 0 8px 24px rgba(31,168,184,.40); }
   .link.primary .sub { color: var(--white); opacity: .85; }
   .link .icon { width: 26px; height: 26px; flex: 0 0 26px; }
   .link .sub { display: block; font-family: var(--body); font-weight: 400; font-size: 13px; color: var(--muted); }
@@ -153,12 +130,12 @@
   </div>
 
   <div class="wrap">
-    <div class="tagline glass">טיולים, תרבויות ואתגרים מסביב לעולם 🌍</div>
-
-    <div class="schedule glass"><span class="dot" aria-hidden="true"></span><span>פרק חדש ביוטיוב כל חמישי ב-<b>18:00</b></span></div>
-
     <!-- ===== Latest long video: update VIDEO_ID + title on every new upload ===== -->
     <a class="featured" data-yt href="https://www.youtube.com/watch?v=qRZyBhQXTDk">
+      <div class="schedule">
+        <span class="cal" aria-hidden="true"><span class="day">כל חמישי</span><span class="time">18:00</span></span>
+        <span class="txt">פרק חדש ביוטיוב<span class="next" id="next-ep">כל שבוע, באותה שעה</span></span>
+      </div>
       <div class="thumb">
         <img src="https://i.ytimg.com/vi/qRZyBhQXTDk/hqdefault.jpg" alt="תמונה מהפרק האחרון">
         <span class="badge">חדש</span>
@@ -213,6 +190,18 @@
       u.searchParams.set("utm_campaign", "linkinbio");
       a.href = u.toString();
     });
+    // "Next episode in X days" – Israel time, static text (no ticking)
+    try {
+      var parts = new Intl.DateTimeFormat("en-US", { timeZone: "Asia/Jerusalem", weekday: "short", hour: "numeric", hour12: false }).formatToParts(new Date());
+      var wd = parts.find(function (x) { return x.type === "weekday"; }).value;
+      var hr = parseInt(parts.find(function (x) { return x.type === "hour"; }).value, 10) % 24;
+      var d = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"].indexOf(wd);
+      var left = (4 - d + 7) % 7;
+      var msg = left === 0 ? (hr < 18 ? "הפרק הבא: היום ב-18:00!" : "הפרק הבא: בחמישי הבא")
+              : left === 1 ? "הפרק הבא: מחר ב-18:00"
+              : "הפרק הבא: עוד " + left + " ימים";
+      document.getElementById("next-ep").textContent = msg;
+    } catch (e) {}
     document.querySelectorAll("a").forEach(function (a) { a.target = "_blank"; a.rel = "noopener"; });
   })();
 </script>
