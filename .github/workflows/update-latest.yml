@@ -1,0 +1,32 @@
+name: Update latest video
+on:
+  schedule:
+    - cron: "*/30 * * * *"   # every 30 minutes
+  workflow_dispatch: {}
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Put latest long video on the page
+        id: upd
+        run: |
+          out=$(python3 scripts/update_latest.py)
+          echo "$out"
+          case "$out" in changed*) echo "changed=1" >> "$GITHUB_OUTPUT";; esac
+      - name: Commit
+        if: steps.upd.outputs.changed == '1'
+        run: |
+          git config user.name "korenolam-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -am "Auto: latest video on bio page"
+          git push
+      - name: Rebuild GitHub Pages
+        if: steps.upd.outputs.changed == '1'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api -X POST repos/${{ github.repository }}/pages/builds || true
