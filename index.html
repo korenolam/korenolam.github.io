@@ -63,7 +63,7 @@
 
   /* ===== Schedule strip on top of the latest video (static – Koren 14.11) ===== */
   .schedule {
-    display: flex; align-items: center; gap: 14px;
+    display: flex; align-items: center; gap: 10px;
     background: var(--primary); color: var(--white);
     padding: 12px 14px;
   }
@@ -74,7 +74,7 @@
   }
   .cal .day { display: block; background: var(--gold); font-family: var(--head); font-weight: 800; font-size: 13px; padding: 3px 0; }
   .cal .time { display: block; font-family: var(--display); font-weight: 900; font-size: 22px; line-height: 1.25; padding: 3px 0 4px; }
-  .schedule .txt { font-family: var(--head); font-weight: 800; font-size: 26px; line-height: 1.15; }
+  .schedule .txt { font-family: var(--head); font-weight: 800; font-size: clamp(17px, 5.4vw, 24px); line-height: 1.15; }
 
   /* ===== Latest video ===== */
   .featured {
@@ -87,12 +87,19 @@
   .featured:hover, .featured:active { transform: translateY(-2px); border-color: var(--primary); }
   .featured .thumb { position: relative; aspect-ratio: 16 / 9; background: #222; }
   .featured img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .badge {
-    position: absolute; top: 10px; right: 10px;
-    background: var(--accent); color: var(--white);
-    font-family: var(--head); font-weight: 800; font-size: 13px;
-    padding: 3px 11px; border-radius: 999px;
+  .live {
+    margin-inline-start: auto; flex-shrink: 0;
+    display: inline-flex; align-items: center; gap: 6px;
+    background: #E8231B; color: var(--white);
+    font-family: var(--head); font-weight: 900; font-size: 15px;
+    padding: 5px 10px; border-radius: 8px;
+    box-shadow: 0 0 0 0 rgba(232,35,27,.7);
+    animation: live-glow 1.6s ease-out infinite;
   }
+  .live .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--white); animation: live-blink 1s steps(1, end) infinite; }
+  @keyframes live-blink { 50% { opacity: 0; } }
+  @keyframes live-glow { 0% { box-shadow: 0 0 0 0 rgba(232,35,27,.7); } 70%, 100% { box-shadow: 0 0 0 10px rgba(232,35,27,0); } }
+  @media (prefers-reduced-motion: reduce) { .live, .live .dot { animation: none; } }
   .play {
     position: absolute; inset: 0; margin: auto; width: 62px; height: 62px; border-radius: 50%;
     background: rgba(17,17,17,.55); display: grid; place-items: center;
@@ -134,10 +141,10 @@
       <div class="schedule">
         <span class="cal" aria-hidden="true"><span class="day">כל חמישי</span><span class="time">18:00</span></span>
         <span class="txt">פרק חדש ביוטיוב</span>
+        <span class="live"><span class="dot" aria-hidden="true"></span>חדש</span>
       </div>
       <div class="thumb">
         <img src="https://i.ytimg.com/vi/c4j_4fZkj-8/hqdefault.jpg" alt="תמונה מהפרק האחרון">
-        <span class="badge">חדש</span>
         <span class="play" aria-hidden="true"></span>
       </div>
       <div class="meta">
